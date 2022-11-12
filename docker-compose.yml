@@ -18,6 +18,8 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_HOSTNAME: localhost
       ALLOW_PLAINTEXT_LISTENER: 1
+    networks:
+      - swat-network
 
   kafka_manager:
     image: hlebalbau/kafka-manager:stable
@@ -26,6 +28,7 @@ services:
     environment:
       ZK_HOSTS: "zookeeper:2181"
       APPLICATION_SECRET: "random-secret"
+
   # Influx DB Server
   influxdb:
     image: influxdb:latest
@@ -36,6 +39,9 @@ services:
       - 8086:8086
     volumes:
       - influxdb:/var/lib/influxdb
+    networks:
+      - swat-network
+
 
   grafana:
     image: grafana/grafana
@@ -49,4 +55,24 @@ services:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on: 
       - influxdb
+    networks:
+      - swat-network
  
+
+  pyspark:
+    image: jupyter/pyspark-notebook
+    container_name: pyspark
+    ports:
+      - 8888:8888
+    volumes:
+      - ./data:/data
+    networks:
+      - swat-network
+
+networks:
+  swat-network:
+    
+volumes:
+  grafana:
+  influxdb:
+  chronograf:
