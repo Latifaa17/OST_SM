@@ -65,7 +65,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - ./data:/data
+      - ./Kafka/data:/data
     networks:
       - swat-network
 
