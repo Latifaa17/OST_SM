@@ -1,8 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn import preprocessing
+
     
 
 def drop_constant_columns(df):
@@ -21,6 +20,13 @@ def drop_corr_features(df):
     to_drop = [column for column in upper.columns if any(upper[column] > 0.95)]
     # Drop features 
     df.drop(to_drop, axis=1, inplace=True)
+    return df
+
+def standardize(df):
+    cols = list(df.columns)
+    cols.remove("Normal/Attack")
+    cols.remove("Timestamp")
+    df[cols] = StandardScaler().fit_transform(df[cols])
     return df
 
 
@@ -45,18 +51,8 @@ if __name__=="__main__":
     #Remove Correlated Features
     df = drop_corr_features(df)
 
-    #Separate data from target value
-    X = df.iloc[ :-1].values
-    y = df.iloc[ -1].values
     #Standardization
-    scale= StandardScaler()
-    X = scale.fit_transform(X) 
+    df=standardize(df)
 
-    #encoding target value
-    le = preprocessing.LabelEncoder()
-    le.fit(y)
-    list(le.classes_)
-    y = le.transform(y)
-    
-    #split test and train
-    X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=42, stratify=True, test_size=0.2)
+    #Saving preprocessed data
+    df.to_csv('./data/Swat_preprocessed.csv') 
