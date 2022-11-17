@@ -11,6 +11,8 @@ def drop_constant_columns(df):
         if len(df[column].unique()) == 1:
             result = result.drop(column,axis=1)
     return result
+
+
 def drop_corr_features(df):
     corr_matrix = df.corr().abs()
     # Select upper triangle of correlation matrix
@@ -18,16 +20,15 @@ def drop_corr_features(df):
     # Find features with correlation greater than 0.95
     to_drop = [column for column in upper.columns if any(upper[column] > 0.95)]
     # Drop features 
-    df= df.drop(to_drop, axis=1, inplace=True)
+    df.drop(to_drop, axis=1, inplace=True)
     return df
-
 
 
 if __name__=="__main__":
   
     #Loading the dataset
-    path = './data/SWaT_Dataset_Attack_v0.xlsx'
-    df = pd.read_excel(path, skiprows=[0])
+    path = './data/SWaT_Dataset_Attack_v0.csv'
+    df = pd.read_csv(path)
 
     #Fixing Column Labels
     df.columns=df.columns.str.strip()
