@@ -1,0 +1,5 @@
+FROM godatadriven/pyspark
+
+COPY . . 
+
+

@@ -60,12 +60,13 @@ services:
  
 
   pyspark:
-    image: jupyter/pyspark-notebook
+    image: pyspark
+    build: ./Spark
     container_name: pyspark
     ports:
       - 8888:8888
     volumes:
-      - ./Kafka/data:/data
+      - ./data:/data
     networks:
       - swat-network
 
