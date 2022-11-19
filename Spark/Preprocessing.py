@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.preprocessing import StandardScaler
+from scipy import stats
+#from sklearn.preprocessing import StandardScaler
 
     
 
@@ -26,7 +27,8 @@ def standardize(df):
     cols = list(df.columns)
     cols.remove("Normal/Attack")
     cols.remove("Timestamp")
-    df[cols] = StandardScaler().fit_transform(df[cols])
+    #df[cols] = StandardScaler().fit_transform(df[cols])
+    df[cols] = stats.zscore(df[cols])
     return df
 
 
@@ -56,3 +58,5 @@ if __name__=="__main__":
 
     #Saving preprocessed data
     df.to_csv('./data/Swat_preprocessed.csv') 
+
+    print('\n Successfully preprocessed the data')
