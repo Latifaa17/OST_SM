@@ -3,7 +3,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
-from influx_writer import InfluxDBWriter
+from influxDB_writer import InfluxDBWriter
 from influxdb_client import InfluxDBClient
 
 import os
