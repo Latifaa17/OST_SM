@@ -3,4 +3,4 @@ python -m venv ./venv
 
 pip install -r ./requirements.txt
 
-python Preprocessing.py >> preprocessing.log 2>&1 &
+python Preprocessing.py >> preprocessing.log 2>&1 
