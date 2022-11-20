@@ -1,11 +1,9 @@
 from pyspark.sql import Row
-from scipy import stats
+from sklearn.preprocessing import MinMaxScaler
 
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
-#from skmultiflow.drift_detection.adwin import ADWIN
-from river import drift
-
+from skmultiflow.drift_detection.adwin import ADWIN
 
 import pickle
 import os
@@ -15,11 +13,12 @@ import pandas as pd
 from datetime import datetime
 
 class InfluxDBWriter:
-    def __init__(self, cloud=False):
+    def __init__(self, approaches, cloud=False):
         self.url = "http://influxdb:8086"
         self.token = "PLVcjlNS8ffprnsg05h3-9rJA1Xxc3dojPvMKsWypVM3wt_uvstaEdbiYPZNzo5z0s29MnQDZaouKQ3-_QyeHQ=="
         self.org = "SWAT"
         self.bucket = "SWAT"
+        self.approaches = approaches
         if cloud: # Connect to InfluxDB Cloud
             self.client = InfluxDBClient(
                 url="<cloud.url>", 
@@ -49,10 +48,11 @@ class InfluxDBWriter:
         #cols[1:] = [i.split('_')[1] for i in cols[1:]]
         dataframe.columns = cols
         # Drop unecessary columns
-        keep=['Timestamp','FIT101','LIT101','P101','P102','AIT201','AIT202','AIT203','P201','P204',
+        keep=['FIT101','LIT101','P101','P102','AIT201','AIT202','AIT203','P201','P204',
               'DPIT301','FIT301','LIT301','MV301','MV302','MV303','MV304','AIT401','AIT402','LIT401','P403',
               'AIT501','AIT502','AIT503','AIT504','PIT502','FIT601','P602','Normal/Attack']
-        dataframe=dataframe.drop(columns=[col for col in dataframe if col not in keep], inplace=True)
+        dataframe = dataframe[keep]
+
 
         # Extract continuous data
         continuous = dataframe[keep]
@@ -63,7 +63,6 @@ class InfluxDBWriter:
     def process(self, row):
         try:
             self.write_api.write(bucket=self.bucket, org=self.org, record=self._row_to_point(row["data"]))
-            #print("test")
         except Exception as ex:
             print(f"[x] Error {str(ex)}")
 
@@ -98,12 +97,9 @@ class InfluxDBWriter:
     def _is_change(self, row, approach):
         #import ADWIN_model
         #model = pickle.load(open(f'./models/{model}', 'rb'))
-        #model=ADWIN()
+        model=ADWIN()
         # Detect change
-        # preds = model.fit_predict(self._preprocess(row))
-        # model.add_element(self._preprocess(row))
-        # if model.detected_change():
-        #     print('Change detected in data: ' + str(self._preprocess(row)))
-
-        model = drift.ADWIN()
-        return True
+        preds = model.fit_predict(self._preprocess(row))
+        model.add_element(self._preprocess(row))
+        if model.detected_change():
+            print('Change detected in data: ' + str(self._preprocess(row)))
