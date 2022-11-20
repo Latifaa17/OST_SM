@@ -20,7 +20,7 @@ def main():
     org = "SWAT"
     bucket = "SWAT"
 
-    with InfluxDBClient(url="http://localhost:8086", token=token, org=org,buket=bucket) as client:
+    with InfluxDBClient(url="http://localhost:8086", token=token, org=org,bucket=bucket) as client:
         write_api = client.write_api(write_options=SYNCHRONOUS)
         consumer = KafkaConsumer(topic, bootstrap_servers=['localhost:9092'],auto_offset_reset='earliest', api_version=(0,10),enable_auto_commit=True,value_deserializer=lambda x: loads(x.decode('utf-8')))
         print("Connection established")

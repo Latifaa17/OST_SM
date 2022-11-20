@@ -9,7 +9,7 @@ def json_serializer(data):
     return dumps(data).encode('utf-8')
 
 producer = KafkaProducer(bootstrap_servers=['localhost:9092'], value_serializer=lambda x: dumps(x).encode('utf-8'))
-rdr = csv.reader(open("test.csv"))
+rdr = csv.reader(open("./data/Swat_dataset.csv"))
 
 next(rdr)
 
