@@ -1,9 +1,11 @@
 from pyspark.sql import Row
-from sklearn.preprocessing import MinMaxScaler
+from scipy import stats
 
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
-from skmultiflow.drift_detection.adwin import ADWIN
+#from skmultiflow.drift_detection.adwin import ADWIN
+from river import drift
+
 
 import pickle
 import os
@@ -13,12 +15,11 @@ import pandas as pd
 from datetime import datetime
 
 class InfluxDBWriter:
-    def __init__(self, approaches, cloud=False):
+    def __init__(self, cloud=False):
         self.url = "http://influxdb:8086"
         self.token = "PLVcjlNS8ffprnsg05h3-9rJA1Xxc3dojPvMKsWypVM3wt_uvstaEdbiYPZNzo5z0s29MnQDZaouKQ3-_QyeHQ=="
         self.org = "SWAT"
         self.bucket = "SWAT"
-        self.approaches = approaches
         if cloud: # Connect to InfluxDB Cloud
             self.client = InfluxDBClient(
                 url="<cloud.url>", 
@@ -62,6 +63,7 @@ class InfluxDBWriter:
     def process(self, row):
         try:
             self.write_api.write(bucket=self.bucket, org=self.org, record=self._row_to_point(row["data"]))
+            #print("test")
         except Exception as ex:
             print(f"[x] Error {str(ex)}")
 
@@ -96,10 +98,12 @@ class InfluxDBWriter:
     def _is_change(self, row, approach):
         #import ADWIN_model
         #model = pickle.load(open(f'./models/{model}', 'rb'))
-        model=ADWIN()
+        #model=ADWIN()
         # Detect change
-        preds = model.fit_predict(self._preprocess(row))
-        model.add_element(self._preprocess(row))
-        if model.detected_change():
-            print('Change detected in data: ' + str(self._preprocess(row)))
-      
+        # preds = model.fit_predict(self._preprocess(row))
+        # model.add_element(self._preprocess(row))
+        # if model.detected_change():
+        #     print('Change detected in data: ' + str(self._preprocess(row)))
+
+        model = drift.ADWIN()
+        return True
