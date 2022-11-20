@@ -1,4 +1,4 @@
-FROM godatadriven/pyspark
+FROM jupyter/pyspark-notebook
 
 COPY . . 
 
