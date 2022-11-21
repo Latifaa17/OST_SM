@@ -15,9 +15,9 @@ def main():
     print("Connecting to consumer ...")
 
     # You can generate an API token from the "API Tokens Tab" in the UI
-    token = "ObTP43CFS4CVyCo8XnI-VJmZFT-P_2dkmLmggcIzq3gs7Db31hluVxEAOICxo00XroxjMNvlhSuBXyNTLNA5Ig=="
+    token = "xhGL_zpEm8AGS1U-_ITTRmlyrVtHIndUaAKZDC6QBYRqT74XOstNkAwVnRh_5Fdr24z6vgq23yQyj-XImlE8UQ=="
     # Please replace the org and bucket by your own values
-    org = "SWAT"
+    org = "elte"
     bucket = "SWAT"
 
     with InfluxDBClient(url="http://localhost:8086", token=token, org=org,bucket=bucket) as client:
@@ -33,7 +33,7 @@ def main():
                     
 
             for key, val in dict.items():
-                    if key != 'timestamp':
+                    if key != 'Timestamp':
                         point.field(key, float(val))
             point.time(datetime.utcnow(), WritePrecision.NS)
             
