@@ -3,4 +3,5 @@ influxdb-client
 pyspark
 numpy
 pandas
-scikit-multiflow
+scipy
+river

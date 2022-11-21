@@ -1,5 +1,6 @@
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession
+#from pyspark.sql.session import SparkSession
 from pyspark.sql.functions import *
 from pyspark.sql.types import *
 
@@ -14,11 +15,21 @@ import pandas as pd
 from datetime import datetime
 
 if __name__=="__main__":
-    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.2.0 pyspark-shell'
+    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0 consume_detect_store.py'
 
     # Spark Instance
-    spark = SparkSession.builder.master('local[*]').getOrCreate()
+    # spark = SparkSession.builder.master('local[*]').getOrCreate()
+    spark = (
+        SparkSession.builder.appName("Kafka Pyspark Streaming")
+        .master("local[*]")
+        .getOrCreate()
+    )
     spark.sparkContext.setLogLevel('ERROR')
+
+    #spark = SparkSession.builder.getOrCreate()
+    # spark = SparkSession \
+    #     .builder \
+    #     .appName("Csv_Reader").getOrCreate()
 
     # Define an input stream
     cols = [ 'Timestamp','FIT101','LIT101', 'MV101','P101','P102', 'AIT201','AIT202','AIT203','FIT201', 'MV201', 'P201', 
@@ -35,10 +46,10 @@ if __name__=="__main__":
         .format("kafka")\
         .option("kafka.bootstrap.servers", "kafka:9092") \
         .option("subscribe", "SWAT")\
+        .option("startingOffsets", "latest")\
         .load()
 
     inputStream = inputStream.select(col("value").cast("string").alias("data"))
-    # inputStream.withWatermark("Time", "1 minute")
     inputStream.printSchema()
 
     # Delete previous row | debug |
@@ -58,5 +69,7 @@ if __name__=="__main__":
         .foreach(InfluxDBWriter())
         .option("checkpointLocation", "checkpoints")
         .start())
+
+        
 
     spark.streams.awaitAnyTermination()
