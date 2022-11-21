@@ -9,6 +9,7 @@
  
    Adhibi Latifa:
 
-   Zeineb Omri:
+   Zeineb Omri: -add a pipeline for the Cumsum model to consume data from kafka + detect changes in real time
+                -store predictions in influxdb
 
-  Wang Yizhi:
+    Wang Yizhi:
