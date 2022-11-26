@@ -8,7 +8,9 @@ services:
       - "2181:2181"
     environment:
       ALLOW_ANONYMOUS_LOGIN: 1
-    
+    networks:
+      - swat-network
+
   kafka:
     image: 'bitnami/kafka:2.8.1'
     ports:
@@ -18,7 +20,9 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_HOSTNAME: localhost
       ALLOW_PLAINTEXT_LISTENER: 1
-
+    networks:
+      - swat-network
+      
   kafka_manager:
     image: hlebalbau/kafka-manager:stable
     ports:
@@ -26,7 +30,8 @@ services:
     environment:
       ZK_HOSTS: "zookeeper:2181"
       APPLICATION_SECRET: "random-secret"
-        
+    networks:
+      - swat-network    
   
   influxdb:
     image: influxdb:1.8-alpine
@@ -76,7 +81,7 @@ services:
     ports:
       - '8125:8125'
     networks:
-    - swat-network
+      - swat-network
 
   #chronograf
   chronograf:
@@ -93,7 +98,9 @@ services:
       - chronograf:/var/lib/chronograf
     environment:
       - PORT=8080
- 
+    networks:
+      - swat-network
+
   #pyspark
   pyspark:
     image: pyspark
