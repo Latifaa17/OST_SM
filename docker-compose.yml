@@ -61,8 +61,26 @@ services:
       - grafana_data:/var/lib/grafana
     networks:
       - swat-network
- 
 
+  #telegraf
+  telegraf:
+    image: telegraf
+    container_name: telegraf_TIG
+    restart: always
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    depends_on:
+      - influxdb
+    links:
+      - influxdb
+    ports:
+      - '8125:8125'
+    networks:
+    - swat-network
+
+
+ 
+  #pyspark
   pyspark:
     image: pyspark
     build: ./Spark
@@ -78,6 +96,6 @@ networks:
   swat-network:
     
 volumes:
-  grafana:
-  influxdb:
-  chronograf:
+  grafana_data: {}
+  influxdb_data: {}
+  chronograf: {}
