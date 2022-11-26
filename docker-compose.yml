@@ -78,7 +78,21 @@ services:
     networks:
     - swat-network
 
-
+  #chronograf
+  chronograf:
+    image: chronograf:latest
+    hostname: chronograf
+    container_name: chronograf
+    ports:
+      - 8080:8080
+    links:
+      - influxdb
+    depends_on:
+      - influxdb
+    volumes:
+      - chronograf:/var/lib/chronograf
+    environment:
+      - PORT=8080
  
   #pyspark
   pyspark:
@@ -91,7 +105,9 @@ services:
       - ./data:/data
     networks:
       - swat-network
+      
 
+      
 networks:
   swat-network:
     
