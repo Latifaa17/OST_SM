@@ -8,7 +8,7 @@ from datetime import datetime
 def main():
 
 
-    topic="SWAT_sample"
+    topic="SWAT"
     print("Connecting to consumer ...")
 
     org = "elte"
