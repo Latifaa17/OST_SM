@@ -7,7 +7,7 @@
                 - Configure the connection between InfluxDB and Grafana
                 - Build dashboards on Grafana
  
-   Adhibi Latifa:
+   Adhibi Latifa: Fixing the problem of connecting the TIG stack, Trying ADWIN from the river library
 
    Zeineb Omri: -add a pipeline for the Cumsum model to consume data from kafka + detect changes in real time
                 -store predictions in influxdb
