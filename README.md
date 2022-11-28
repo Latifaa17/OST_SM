@@ -12,4 +12,5 @@
    Zeineb Omri: -add a pipeline for the Cumsum model to consume data from kafka + detect changes in real time
                 -store predictions in influxdb
 
-    Wang Yizhi:
+   Wang Yizhi: - added the chronograf as the UI of influxdb
+               - trying to monitoring the accuracy use the SVM as the decision model for detecting changes
