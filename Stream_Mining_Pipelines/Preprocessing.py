@@ -23,13 +23,13 @@ def drop_corr_features(df):
     df.drop(to_drop, axis=1, inplace=True)
     return df
 
-def standardize(df):
-    cols = list(df.columns)
-    cols.remove("Normal/Attack")
-    cols.remove("Timestamp")
-    #df[cols] = StandardScaler().fit_transform(df[cols])
-    df[cols] = stats.zscore(df[cols])
-    return df
+# def standardize(df):
+#     cols = list(df.columns)
+#     cols.remove("Normal/Attack")
+#     cols.remove("Timestamp")
+#     #df[cols] = StandardScaler().fit_transform(df[cols])
+#     df[cols] = stats.zscore(df[cols])
+#     return df
 
 
 if __name__=="__main__":
