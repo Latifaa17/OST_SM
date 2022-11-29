@@ -1,7 +1,0 @@
-openpyxl
-influxdb-client
-pyspark
-numpy
-pandas
-scipy
-river

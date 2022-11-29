@@ -109,7 +109,7 @@ services:
     ports:
       - 8888:8888
     volumes:
-      - ./data:/data
+      - ./Pyspark/data:/data
     networks:
       - swat-network
       

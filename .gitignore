@@ -4,4 +4,6 @@ venv/
 
 #Logs
 *.log
-./__pycache__/*
+
+#pycache
+__pycache__/
