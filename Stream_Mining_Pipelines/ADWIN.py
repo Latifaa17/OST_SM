@@ -29,6 +29,8 @@ def main():
 
         drift_detector_2 = drift.ADWIN()
 
+        drift_detector_3 = drift.ADWIN()
+
         for message in consumer:
             #print(f"{message.value}")
 
@@ -38,39 +40,53 @@ def main():
             point_1 = Point("ADWIN_FIT101")
             point_1.field("label", float(dict["label"]))
             point_1.field("FIT101", float(dict["FIT101"]))
+
             drift_detector_1.update(float(dict["FIT101"]))
             if drift_detector_1.change_detected:
                 # The drift detector indicates after each sample if there is a drift in the data
-                print(f'Change detected at index {i}')
-                #drift_detector_1.reset()   # As a best practice, we reset the detector
+                print(f'Change detected at index {i}, col: FIT101')
+                drift_detector_1.reset()   # As a best practice, we reset the detector
                 point_1.field("prediction", 1)
             else:
                 point_1.field("prediction", 0)
 
             point_1.time(datetime.utcnow(), WritePrecision.NS)
-            
             write_api.write(bucket, org, point_1)
 
             '''  AIT203  '''
             point_2 = Point("ADWIN_AIT203")
             point_2.field("label", float(dict["label"]))
             point_2.field("AIT203", float(dict["AIT203"]))
+
             drift_detector_2.update(float(dict["AIT203"]))
             if drift_detector_2.change_detected:
-                # The drift detector indicates after each sample if there is a drift in the data
-                print(f'Change detected at index {i}')
-                #drift_detector_2.reset()   # As a best practice, we reset the detector
+                print(f'Change detected at index {i}, col: AIT203')
+                drift_detector_2.reset()   
                 point_2.field("prediction", 1)
             else:
                 point_2.field("prediction", 0)
 
             point_2.time(datetime.utcnow(), WritePrecision.NS)
-            
             write_api.write(bucket, org, point_2)
 
+            ''' DPIT301 '''
+            point_3 = Point("ADWIN_DPIT301")
+            point_3.field("label", float(dict["label"]))
+            point_3.field("DPIT301", float(dict["DPIT301"]))
+
+            drift_detector_3.update(float(dict["DPIT301"]))
+            if drift_detector_3.change_detected:
+                print(f'Change detected at index {i}, col: DPIT301')
+                drift_detector_3.reset()   
+                point_3.field("prediction", 1)
+            else:
+                point_3.field("prediction", 0)
+
+            point_3.time(datetime.utcnow(), WritePrecision.NS)
+            write_api.write(bucket, org, point_3)
 
             i+=1
-            print("Message sent to influxDB", i)
+            #print("Message sent to influxDB", i)
 
 
 if __name__ == "__main__":

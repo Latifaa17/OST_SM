@@ -104,7 +104,7 @@ services:
   #pyspark
   pyspark:
     image: pyspark
-    build: ./Spark
+    build: ./Pyspark
     container_name: pyspark
     ports:
       - 8888:8888
