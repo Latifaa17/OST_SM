@@ -54,7 +54,7 @@ if __name__=="__main__":
     df = drop_corr_features(df)
 
     #Standardization
-    df=standardize(df)
+    #df=standardize(df)
 
     #Saving preprocessed data
     df.to_csv('./data/Swat_preprocessed.csv') 
