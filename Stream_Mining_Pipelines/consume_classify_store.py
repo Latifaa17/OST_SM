@@ -5,7 +5,6 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 import pandas as pd
 import pickle
-from sklearn.preprocessing import StandardScaler
 
 def main():
 
@@ -33,7 +32,7 @@ def main():
             to_predict = pred_row.drop(columns= ['Timestamp'])
             to_predict = pred_row.values[:,1:-1]
 
-            model = pickle.load(open(f'../models/LinearSVC.pkl', 'rb'))
+            model = pickle.load(open(f'./models/LinearSVC.pkl', 'rb'))
             preds = model.predict(to_predict)
 
             pred_row["prediction"] = preds
@@ -42,8 +41,12 @@ def main():
             new_dict = pred_row.to_dict()
             #print(dict)
             for key, val in pred_row.items():
-                    if key != 'Timestamp':
-                        point.field(key, float(val))
+                if key != 'Timestamp':
+                    point.field(key, float(val))
+                if key == "label" or key == "prediction":
+                    point.tag(key, float(val))                      
+
+                
             point.time(datetime.utcnow(), WritePrecision.NS)
             
             write_api.write(bucket, org, point)
