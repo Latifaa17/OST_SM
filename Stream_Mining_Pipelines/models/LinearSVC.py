@@ -6,7 +6,11 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 
 df = pd.read_csv('../../Kafka/data/Swat_dataset.csv')
-df = df.drop(columns = ['Timestamp', 'Unnamed: 0'])
+
+features=['FIT101','LIT101','P101','P102','AIT203','P201','DPIT301','FIT301',
+    'LIT301','MV302','MV304','AIT402','LIT401','AIT501','AIT502','AIT503','PIT502']
+
+df = df[features].astype(float)
 df.fillna(0, inplace = True)
 #df  = df.iloc[:15000]
 dataset = df.values
