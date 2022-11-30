@@ -62,8 +62,8 @@ def main():
             for key, val in dict.items():
                     if key != 'Timestamp':
                         point_1.field(key, float(val))
-                    if key== 'label':
-                        point.tag(key, float(val))
+                    if key == 'label':
+                        point_1.tag(key, float(val))
 
             point_1.time(datetime.utcnow(), WritePrecision.NS)
             
