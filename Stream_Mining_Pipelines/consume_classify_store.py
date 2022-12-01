@@ -5,7 +5,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 import pandas as pd
 import pickle
-from sklearn.preprocessing import StandardScaler
+import warnings
+warnings.filterwarnings('ignore')
 
 def main():
 
@@ -27,30 +28,34 @@ def main():
         i=0
         for message in consumer:
             #print(f"{message.value}")
-
             dict = message.value
+            features=['FIT101','LIT101','P101','P102','AIT203','P201','DPIT301','FIT301',
+        'LIT301','MV302','MV304','AIT402','LIT401','AIT501','AIT502','AIT503','PIT502','label']
             pred_row = pd.DataFrame(dict, index = [0])
-            to_predict = pred_row.drop(columns= ['Timestamp'])
+            print(pred_row)
+            
+
+            #to_predict = pred_row.drop(pred_row.columns.difference(features), 1, inplace=True)
+
             to_predict = pred_row.values[:,1:-1]
-
-            model = pickle.load(open(f'./models/LinearSVC.pkl', 'rb'))
+            #print(to_predict)
+            model = pickle.load(open(f'models/LinearSVC.pkl', 'rb'))
             preds = model.predict(to_predict)
-
+          
             pred_row["prediction"] = preds
-
             point = Point("SWAT_classified")
-            new_dict = pred_row.to_dict()
-            #print(dict)
             for key, val in pred_row.items():
-                    if key != 'Timestamp':
-                        point.field(key, float(val))
-                    if key == 'prediction' or key == 'label':
-                        point.tag(key, float(val))
+                if key != 'Timestamp':
+                   point.field(key, float(val))
+ 
+                if key == 'prediction' or key == 'label':
+                    point.tag(key, float(val))
             point.time(datetime.utcnow(), WritePrecision.NS)
             
             write_api.write(bucket, org, point)
             i+=1
             print("Message sent to influxDB", i)
+        
 
 
 if __name__ == "__main__":
