@@ -1,7 +1,7 @@
 # from sklearn.naive_bayes import GaussianNB
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report,confusion_matrix
+from sklearn.metrics import classification_report,confusion_matrix,f1_score
 from sklearn.model_selection import GridSearchCV
 # from sklearn.decomposition import PCA
 # from sklearn.svm import SVC
@@ -14,26 +14,26 @@ import warnings
 
 warnings.filterwarnings("ignore") 
 
-def recall_attacked(y_test,y_pred):
-    TP,FN,FP,TN = confusion_matrix(y_test,y_pred,labels=[1,0]).flatten()
-    recall = TP/(TP+FN)
-    return recall
 
-def grid_search_LR(C_list,X,y):
+def grid_search_LR(C_list,weight_list,X,y):
     '''
-    For calculating recall of the attack class
+    For grid searching the best parameter based on f1 of the class 1
     '''
-    X_train,X_test,y_train,y_test = train_test_split(X,y,random_state=0)
-    scores = []
+    X_train,X_test,y_train,y_test = train_test_split(X,y,stratify=y)
+    best_C = C_list[0]
+    best_weight = weight_list[0]
+    best_score = 0
     for C in tqdm.tqdm(C_list):
-        lr = LogisticRegression(C=C)
-        y_pred = lr.fit(X_train,y_train).predict(X_test)
-        scores.append(recall_attacked(y_test,y_pred))
-        
-    scores = np.array(scores)
-    best_C = C_list[np.argmax(scores)]
-    best_score = np.max(scores)
-    return best_C,best_score,scores
+        for weight in weight_list:
+            lr = LogisticRegression(C=C,class_weight={0:1-weight, 1:weight})
+            y_pred = lr.fit(X_train,y_train).predict(X_test)
+            score = f1_score(y_test,y_pred,pos_label=1)
+            print('C:',C,',weight:',weight,',score:',score)
+            if score > best_score:
+                best_C = C
+                best_weight = weight
+                best_score = score
+    return best_C,best_weight,best_score
 
 # Data reading
 df = pd.read_csv('../../Kafka/data/Swat_dataset.csv',index_col=0)
@@ -43,21 +43,15 @@ golden_features = ['AIT402','MV304','AIT203','LIT101','LIT301','P102',
 df_golden = df [golden_features+['Normal/Attack']]
 X = df_golden.values[:,:-1]
 y = df_golden.values[:,-1]
-X_train,X_test,y_train,y_test = train_test_split(X,y)
 
-# Choosing the best parameter C
-# hyper_paras = {'C':np.linspace(0.1,1.0,10)}
-# grid = GridSearchCV(LogisticRegression(),hyper_paras,)
-# grid.fit(X_train,y_train)
-# C = grid.best_params_
+C_list = [0.3,1,3,10,15,30,50]
+weight_list = np.linspace(0.5,1.0,10)
+best_C,best_weight,best_score = grid_search_LR(C_list,weight_list,X,y)
 
-C_list = np.linspace(0.1,1.0,10)
-best_C,best_score,scores = grid_search_LR(C_list,X,y)
+print('The best C is',best_C,',the best weight is',best_weight,'with the f1 on class 1',best_score)
 
-print(scores)
-print('The best C is',best_C,'with the recall on class 1',best_score)
-
-lr = LogisticRegression(C=best_C)
+lr = LogisticRegression(C=best_C,class_weight={0:1-best_weight, 1:best_weight})
 lr.fit(X,y)
+
 pickle.dump(lr, open('LogisticRegression.pkl', 'wb'))
 print('Model saved')
