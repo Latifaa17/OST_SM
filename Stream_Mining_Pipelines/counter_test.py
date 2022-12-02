@@ -24,7 +24,9 @@ def main():
     database = 'swat'
     retention_policy = 'autogen'
     bucket = f'{database}/{retention_policy}'
-        
+    
+    model = pickle.load(open(f'./models/LogisticRegression.pkl', 'rb'))
+    
     with InfluxDBClient(url="http://localhost:8086", token=f'{username}:{password}', org='-',bucket=bucket) as client:
         write_api = client.write_api(write_options=SYNCHRONOUS)
         consumer = KafkaConsumer(topic, bootstrap_servers=['localhost:9092'],auto_offset_reset='earliest', api_version=(0,10),enable_auto_commit=True,value_deserializer=lambda x: loads(x.decode('utf-8')))
@@ -38,7 +40,7 @@ def main():
         for message in consumer:
                   
             dict = message.value
-            point_original = Point("SWAT_MORRIS_COUNTER")            
+            point_COUNTER = Point("SWAT_MORRIS_COUNTER")            
 
             if dict['label'] == '1':
                 counter_attacked.update()
@@ -47,19 +49,19 @@ def main():
                 counter_normal.update()
                 cnt_normal += 1
                 
-            point_original.field('MORRIS Count Normal', counter_normal.query())  
-            point_original.field('MORRIS Count Attacked', counter_attacked.query())  
+            point_COUNTER.field('MORRIS Count Normal', counter_normal.query())  
+            point_COUNTER.field('MORRIS Count Attacked', counter_attacked.query())  
             
-            point_original.field('Real Count Normal', cnt_normal)  
-            point_original.field('Real Count Attacked', cnt_attacked) 
+            point_COUNTER.field('Real Count Normal', cnt_normal)  
+            point_COUNTER.field('Real Count Attacked', cnt_attacked) 
              
 
-            point_original.field('label', float(dict['label']))
-            point_original.field('Total Count', i)   
+            point_COUNTER.field('label', float(dict['label']))
+            point_COUNTER.field('Total Count', i)   
             
-            point_original.time(datetime.utcnow(), WritePrecision.NS)
+            point_COUNTER.time(datetime.utcnow(), WritePrecision.NS)
 
-            write_api.write(bucket, org, point_original)
+            write_api.write(bucket, org, point_COUNTER)
 
             print("Message sent to influxDB",i)
             i += 1

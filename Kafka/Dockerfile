@@ -3,3 +3,4 @@ COPY . .
 RUN pip install -r requirements.txt
 #ENTRYPOINT ["python", "producer.py"]
 #RUN python producer.py
+#RUN python producer_mul.py
