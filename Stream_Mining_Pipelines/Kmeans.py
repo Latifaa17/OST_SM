@@ -25,11 +25,11 @@ def main():
     bucket = f'{database}/{retention_policy}'
 
     model = pickle.load(open(f'./models/kmeans.pickle', 'rb'))
-    keep = ['FIT101', 'LIT101', 'P101', 'P102', 'AIT201', 'AIT202', 'AIT203',
-       'P201', 'P204', 'DPIT301', 'FIT301', 'LIT301', 'MV301', 'MV302',
-       'MV303', 'MV304', 'AIT401', 'AIT402', 'LIT401', 'P403', 'AIT501',
-       'AIT502', 'AIT503', 'AIT504', 'PIT502', 'FIT601', 'P602']
-    
+    # keep = ['FIT101', 'LIT101', 'P101', 'P102', 'AIT201', 'AIT202', 'AIT203',
+    #    'P201', 'P204', 'DPIT301', 'FIT301', 'LIT301', 'MV301', 'MV302',
+    #    'MV303', 'MV304', 'AIT401', 'AIT402', 'LIT401', 'P403', 'AIT501',
+    #    'AIT502', 'AIT503', 'AIT504', 'PIT502', 'FIT601', 'P602']
+    keep = ['FIT101', 'AIT203', 'DPIT301']
 
     with InfluxDBClient(url="http://localhost:8086", token=f'{username}:{password}', org='-',bucket=bucket) as client:
         write_api = client.write_api(write_options=SYNCHRONOUS)

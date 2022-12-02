@@ -5,19 +5,21 @@ from pyspark.sql.types import *
 
 
 import pandas as pd
-
+import os
 
 
 
 if __name__=="__main__":
     
-    #os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0 pyspark_streaming.py'
+    os.environ['PYSPARK_SUBMIT_ARGS'] = '--packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0 pyspark_streaming.py'
 
     spark = (
         SparkSession.builder.appName("Pyspark Streaming")
         .master("local[*]")
         .getOrCreate()
     )
+
+    print('test')
 
     spark.sparkContext.setLogLevel('ERROR')
 
@@ -30,7 +32,7 @@ if __name__=="__main__":
     csv_schema = StructType(fields)
 
     
-    df = spark.readStream.format('csv').schema(csv_schema).option('header','true').option('delimiter',',').load('./Swat_dataset*.csv')
+    df = spark.readStream.format('csv').schema(csv_schema).option('header','true').option('delimiter',',').load('./data/Swat_dataset*.csv')
     df.printSchema()
 
     df_final = df.select("Index","MV301","AIT501","PIT503","Normal/Attack")
@@ -39,11 +41,11 @@ if __name__=="__main__":
         #print(row)
         row_dict = row.asDict()
         print(row_dict)
-        df = pd.DataFrame(row_dict, index=[0])
-        print("***************")
+        #df = pd.DataFrame(row_dict, index=[0])
+        #print("***************")
         
 
-    query = df_final.writeStream.outputMode("append").foreach(f).option("checkpointLocation", "checkpoints").start().awaitTermination()
+    df_final.writeStream.outputMode("append").foreach(f).option("checkpointLocation", "checkpoints").start().awaitTermination()
     
     # df_final.select(to_json(struct([col(c).alias(c) for c in df_final.columns])).alias("value"))\
     # .writeStream.format("kafka").outputMode("append").option("kafka.bootstrap.servers", "localhost:9092") \

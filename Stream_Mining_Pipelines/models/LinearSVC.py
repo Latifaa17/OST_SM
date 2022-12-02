@@ -17,4 +17,4 @@ y = dataset[:,-1]
 clf =LinearSVC(random_state=0, tol=1e-5)
 clf.fit(X, y)
 pickle.dump(clf, open('LinearSVC.pkl', 'wb'))
-print("Model Pickled")
+
