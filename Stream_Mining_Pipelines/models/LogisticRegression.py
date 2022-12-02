@@ -36,14 +36,15 @@ def grid_search_LR(C_list,weight_list,X,y):
     return best_C,best_weight,best_score
 
 # Data reading
-df = pd.read_csv('../../Kafka/data/Swat_dataset.csv',index_col=0)
+# df = pd.read_csv('../../Kafka/data/Swat_dataset.csv',index_col=0)
+df = pd.read_csv('../data/Swat_preprocessed.csv',index_col=0)  # Use the training set
 golden_features = ['AIT402','MV304','AIT203','LIT101','LIT301','P102',
                     'AIT503','AIT504','AIT401','AIT201','P201','FIT101',
                     'P101','DPIT301','PIT502'] 
 df_golden = df [golden_features+['Normal/Attack']]
 X = df_golden.values[:,:-1]
 y = df_golden.values[:,-1]
-
+# Didn't normailization
 C_list = [0.3,1,3,10,15,30,50]
 weight_list = np.linspace(0.5,1.0,10)
 best_C,best_weight,best_score = grid_search_LR(C_list,weight_list,X,y)
