@@ -24,15 +24,15 @@ def main():
         print("Connection established")
         i=0
 
-        drift_PIT502 = drift.PageHinkley()
-        drift_FIT101 =drift.PageHinkley()
+        drift_PIT502 = drift.HDDM_A()
+        drift_FIT101 =drift.HDDM_A()
 
         for message in consumer:
             #print(f"{message.value}")
 
             dict = message.value
 
-            point = Point("PageHinkley_PIT502")
+            point = Point("HDDM_A_PIT502")
             drift_PIT502.update(float(dict["PIT502"]))
             if drift_PIT502.drift_detected:
                 # The drift detector indicates after each sample if there is a drift in the data
@@ -42,7 +42,7 @@ def main():
 
             else:
                 point.field("prediction", 0)
-                point.tag("prediction", 1)
+                point.tag("prediction", 0)
 
             
             for key, val in dict.items():
@@ -55,7 +55,7 @@ def main():
             write_api.write(bucket, org, point)
 
             
-            point2 = Point("PageHinkley_FIT101")
+            point2 = Point("HDDM_A_FIT101")
             drift_FIT101.update(float(dict["FIT101"]))
             if drift_FIT101.drift_detected:
                 # The drift detector indicates after each sample if there is a drift in the data
@@ -65,7 +65,7 @@ def main():
 
             else:
                 point2.field("prediction", 0)
-                point2.tag("prediction", 1)
+                point2.tag("prediction", 0)
 
             
             for key, val in dict.items():

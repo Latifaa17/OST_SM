@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 9,
-  "iteration": 1669941705286,
+  "iteration": 1669943790311,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -36,7 +36,7 @@
       },
       "id": 16,
       "options": {
-        "content": "# PageHinkley change point detection for SWAT\n",
+        "content": "# HDDM_A change point detection for SWAT\n",
         "mode": "markdown"
       },
       "pluginVersion": "8.4.3",
@@ -102,7 +102,7 @@
               "type": "time"
             }
           ],
-          "measurement": "PageHinkley_PIT502",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "A",
@@ -190,10 +190,10 @@
               "type": "tag"
             }
           ],
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT count(\"Attack_Detected\") FROM \"CUSUM\" WHERE $timeFilter GROUP BY prediction",
+          "query": "SELECT count(\"Attack_Detected\") FROM \"HDDM_A_FIT101\" WHERE $timeFilter GROUP BY prediction",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -280,10 +280,10 @@
               "type": "tag"
             }
           ],
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT count(\"Attack_Detected\") FROM \"CUSUM\" WHERE $timeFilter GROUP BY prediction",
+          "query": "SELECT count(\"Attack_Detected\") FROM \"HDDM_A_FIT101\" WHERE $timeFilter GROUP BY prediction",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -398,10 +398,10 @@
               "type": "fill"
             }
           ],
-          "measurement": "PageHinkley_PIT502",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"label\") FROM \"CUSUM\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT count(\"label\") FROM \"HDDM_A_FIT101\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -488,10 +488,10 @@
               "type": "tag"
             }
           ],
-          "measurement": "PageHinkley_PIT502",
+          "measurement": "HDDM_A_PIT502",
           "orderByTime": "ASC",
           "policy": "autogen",
-          "query": "SELECT count(\"Attack_Detected\") FROM \"CUSUM\" WHERE $timeFilter GROUP BY prediction",
+          "query": "SELECT count(\"Attack_Detected\") FROM \"HDDM_A_FIT101\" WHERE $timeFilter GROUP BY prediction",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "time_series",
@@ -607,7 +607,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_PIT502",
+          "measurement": "HDDM_A_PIT502",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -643,7 +643,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_PIT502",
+          "measurement": "HDDM_A_PIT502",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -776,7 +776,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -812,7 +812,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -942,7 +942,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "B",
@@ -978,7 +978,7 @@
             }
           ],
           "hide": false,
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
           "refId": "C",
@@ -1060,10 +1060,10 @@
             }
           ],
           "hide": false,
-          "measurement": "CUSUM",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"prediction\") FROM \"PageHinkley_FIT101\" WHERE (\"prediction\" = 0 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
+          "query": "SELECT count(\"prediction\") FROM \"HDDM_A_FIT101\" WHERE (\"prediction\" = 1 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1157,10 +1157,10 @@
               "type": "time"
             }
           ],
-          "measurement": "CUSUM",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"prediction\") FROM \"PageHinkley_FIT101\" WHERE (\"label\" = 0 AND \"prediction\" = 1) AND $timeFilter GROUP BY time($__interval)",
+          "query": "SELECT count(\"prediction\") FROM \"HDDM_A_FIT101\" WHERE (\"label\" = 0 AND \"prediction\" = 1) AND $timeFilter GROUP BY time($__interval)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1253,10 +1253,10 @@
               "type": "time"
             }
           ],
-          "measurement": "CUSUM",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"prediction\") FROM \"PageHinkley_FIT101\" WHERE (\"prediction\" = 1 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
+          "query": "SELECT count(\"prediction\") FROM \"HDDM_A_FIT101\" WHERE (\"prediction\" = 0  AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1403,10 +1403,10 @@
             "uid": "6w50FCOVz"
           },
           "groupBy": [],
-          "measurement": "PageHinkley_FIT101",
+          "measurement": "HDDM_A_FIT101",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT \"LIT301\", \"AIT202\", \"AIT203\", \"AIT401\", \"label\", \"Attack_Detected\" FROM \"CUSUM\" WHERE $timeFilter",
+          "query": "SELECT \"LIT301\", \"AIT202\", \"AIT203\", \"AIT401\", \"label\", \"Attack_Detected\" FROM \"HDDM_A_FIT101\" WHERE $timeFilter",
           "rawQuery": false,
           "refId": "A",
           "resultFormat": "table",
@@ -1482,14 +1482,14 @@
           "text": "0",
           "value": "0"
         },
-        "definition": "select distinct label from CUSUM",
+        "definition": "select distinct label from HDDM_A_FIT101",
         "hide": 0,
         "includeAll": false,
         "label": "label",
         "multi": true,
         "name": "label",
         "options": [],
-        "query": "select distinct label from CUSUM",
+        "query": "select distinct label from HDDM_A_FIT101",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1506,14 +1506,14 @@
             "0"
           ]
         },
-        "definition": "select distinct Attack_Detected from CUSUM",
+        "definition": "select distinct Attack_Detected from HDDM_A_FIT101",
         "hide": 0,
         "includeAll": false,
         "label": "prediction",
         "multi": true,
         "name": "prediction",
         "options": [],
-        "query": "select distinct Attack_Detected from CUSUM",
+        "query": "select distinct Attack_Detected from HDDM_A_FIT101",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -1523,13 +1523,13 @@
     ]
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
-  "title": "SWAT data PageHinkley change detection",
+  "title": "SWAT data HDDM_A change detection",
   "uid": "Z7LjwMpdd",
-  "version": 8,
+  "version": 11,
   "weekStart": ""
 }
