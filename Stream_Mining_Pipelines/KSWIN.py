@@ -4,7 +4,8 @@ from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 import pickle
-import skmultiflow.drift_detection as drift_detection
+# import skmultiflow.drift_detection as drift_detection
+from river import drift as drift_detection
 import pandas as pd
 import numpy as np
 from sklearn.decomposition import PCA
@@ -26,8 +27,10 @@ def main():
     detect_features = ['AIT203','PIT502','AIT201','AIT501']
 
     def change_detect(model,new_data):
-        model.add_element(new_data)
-        if model.change_detected:
+        # model.add_element(new_data)
+        model.update(new_data)
+        # if model.change_detected:
+        if model.drift_detected:
             # model.reset()
             return 1
         else:
