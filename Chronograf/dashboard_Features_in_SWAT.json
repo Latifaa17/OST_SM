@@ -1,0 +1,2256 @@
+{
+	"meta": {
+		"chronografVersion": "1.10.0",
+		"sources": {
+			"1": {
+				"name": "Influx 1",
+				"link": "/chronograf/v1/sources/1"
+			}
+		}
+	},
+	"dashboard": {
+		"id": "3",
+		"cells": [
+			{
+				"i": "03d9c704-50e6-46cd-9619-c67ecc35c0d2",
+				"x": 9,
+				"y": 8,
+				"w": 3,
+				"h": 4,
+				"name": "P206 P301 (One of it should be removed)",
+				"queries": [
+					{
+						"query": "SELECT mean(\"P301\") AS \"mean_P301\", mean(\"P206\") AS \"mean_P206\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P301",
+									"args": [
+										{
+											"value": "P301",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P206",
+									"args": [
+										{
+											"value": "P206",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "71a3412c-4a45-46fb-b45f-6673cd8052a4",
+						"type": "scale",
+						"hex": "#8F8AF4",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "921e86e0-f644-4244-a5a7-65368fb31798",
+						"type": "scale",
+						"hex": "#A51414",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "2bd0e5ce-6944-4625-93a5-dc8cc2f82c01",
+						"type": "scale",
+						"hex": "#F4CF31",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/03d9c704-50e6-46cd-9619-c67ecc35c0d2"
+				}
+			},
+			{
+				"i": "576f195e-5d74-4df0-9ac7-f6b21e76cc93",
+				"x": 6,
+				"y": 8,
+				"w": 3,
+				"h": 4,
+				"name": "P201 P202 P203",
+				"queries": [
+					{
+						"query": "SELECT mean(\"P201\") AS \"mean_P201\", mean(\"P203\") AS \"mean_P203\", mean(\"P202\") AS \"mean_P202\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P201",
+									"args": [
+										{
+											"value": "P201",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P203",
+									"args": [
+										{
+											"value": "P203",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P202",
+									"args": [
+										{
+											"value": "P202",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "60f19fb7-e698-4ded-a773-84073aa08ca2",
+						"type": "scale",
+						"hex": "#F6F6F8",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "99719dc3-5fb7-4a01-9605-5ede419446ab",
+						"type": "scale",
+						"hex": "#A4A8B6",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "0d14e671-f25a-4c54-a4fa-eb5f17e9d499",
+						"type": "scale",
+						"hex": "#545667",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/576f195e-5d74-4df0-9ac7-f6b21e76cc93"
+				}
+			},
+			{
+				"i": "dde96a21-8eba-4e3f-9236-749e85dab43b",
+				"x": 3,
+				"y": 8,
+				"w": 3,
+				"h": 4,
+				"name": "MV301 MV304 P102 ",
+				"queries": [
+					{
+						"query": "SELECT mean(\"MV301\") AS \"mean_MV301\", mean(\"P102\") AS \"mean_P102\", mean(\"MV304\") AS \"mean_MV304\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_MV301",
+									"args": [
+										{
+											"value": "MV301",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P102",
+									"args": [
+										{
+											"value": "P102",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_MV304",
+									"args": [
+										{
+											"value": "MV304",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "83095266-e48e-43be-8e11-3741cde3ec44",
+						"type": "scale",
+						"hex": "#DA6FF1",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "7fd61554-a5b5-4d81-b085-938b3d4cfd7d",
+						"type": "scale",
+						"hex": "#00717A",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "2520cf01-70df-4b54-b827-da3315dde754",
+						"type": "scale",
+						"hex": "#ACFF76",
+						"name": "Ectoplasm",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/dde96a21-8eba-4e3f-9236-749e85dab43b"
+				}
+			},
+			{
+				"i": "b76e812d-29e5-41d7-93b2-aec9fcbaecab",
+				"x": 0,
+				"y": 8,
+				"w": 3,
+				"h": 4,
+				"name": "MV201 P101 (Almost same, one can be removed)",
+				"queries": [
+					{
+						"query": "SELECT mean(\"P101\") AS \"mean_P101\", mean(\"MV201\") AS \"mean_MV201\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_P101",
+									"args": [
+										{
+											"value": "P101",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								},
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_MV201",
+									"args": [
+										{
+											"value": "MV201",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line-stacked",
+				"colors": [
+					{
+						"id": "3051f25a-f9cb-4362-aa95-cb9c0e7ca44e",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "4fb5cb74-34e9-4e42-b19b-f792a709d45e",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d2b1c420-f8f1-454d-9720-62c85f59a787",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/b76e812d-29e5-41d7-93b2-aec9fcbaecab"
+				}
+			},
+			{
+				"i": "cc0c521c-2d2e-4d85-a386-9eeafdcf1399",
+				"x": 6,
+				"y": 12,
+				"w": 3,
+				"h": 4,
+				"name": "FIT503",
+				"queries": [
+					{
+						"query": "SELECT mean(\"FIT503\") AS \"mean_FIT503\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_FIT503",
+									"args": [
+										{
+											"value": "FIT503",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "5b44bb66-f563-41c5-bde7-6966927fdc67",
+						"type": "scale",
+						"hex": "#74D495",
+						"name": "Atlantis",
+						"value": "0"
+					},
+					{
+						"id": "161a3e7b-3030-4fc1-825d-d0edd6b40d99",
+						"type": "scale",
+						"hex": "#3F3FBA",
+						"name": "Atlantis",
+						"value": "0"
+					},
+					{
+						"id": "8e012df5-abc0-4a35-9b5a-840b37ab755b",
+						"type": "scale",
+						"hex": "#FF4D9E",
+						"name": "Atlantis",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/cc0c521c-2d2e-4d85-a386-9eeafdcf1399"
+				}
+			},
+			{
+				"i": "a4fddcdf-1eaf-4b6f-bb71-78b09dd2dfd0",
+				"x": 9,
+				"y": 12,
+				"w": 3,
+				"h": 4,
+				"name": "LIT301",
+				"queries": [
+					{
+						"query": "SELECT mean(\"LIT301\") AS \"mean_LIT301\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_LIT301",
+									"args": [
+										{
+											"value": "LIT301",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "60f19fb7-e698-4ded-a773-84073aa08ca2",
+						"type": "scale",
+						"hex": "#F6F6F8",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "99719dc3-5fb7-4a01-9605-5ede419446ab",
+						"type": "scale",
+						"hex": "#A4A8B6",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "0d14e671-f25a-4c54-a4fa-eb5f17e9d499",
+						"type": "scale",
+						"hex": "#545667",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/a4fddcdf-1eaf-4b6f-bb71-78b09dd2dfd0"
+				}
+			},
+			{
+				"i": "722f3469-8e7f-4f32-b27b-62722dcbbaab",
+				"x": 3,
+				"y": 12,
+				"w": 3,
+				"h": 4,
+				"name": "FIT401",
+				"queries": [
+					{
+						"query": "SELECT mean(\"FIT401\") AS \"mean_FIT401\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_FIT401",
+									"args": [
+										{
+											"value": "FIT401",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_FIT401",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "5b44bb66-f563-41c5-bde7-6966927fdc67",
+						"type": "scale",
+						"hex": "#74D495",
+						"name": "Atlantis",
+						"value": "0"
+					},
+					{
+						"id": "161a3e7b-3030-4fc1-825d-d0edd6b40d99",
+						"type": "scale",
+						"hex": "#3F3FBA",
+						"name": "Atlantis",
+						"value": "0"
+					},
+					{
+						"id": "8e012df5-abc0-4a35-9b5a-840b37ab755b",
+						"type": "scale",
+						"hex": "#FF4D9E",
+						"name": "Atlantis",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/722f3469-8e7f-4f32-b27b-62722dcbbaab"
+				}
+			},
+			{
+				"i": "3040ba1e-5209-4ca2-9986-114d95746adf",
+				"x": 0,
+				"y": 12,
+				"w": 3,
+				"h": 4,
+				"name": "FIT201",
+				"queries": [
+					{
+						"query": "SELECT mean(\"FIT201\") AS \"mean_FIT201\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_FIT201",
+									"args": [
+										{
+											"value": "FIT201",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_FIT201",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "71a3412c-4a45-46fb-b45f-6673cd8052a4",
+						"type": "scale",
+						"hex": "#8F8AF4",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "921e86e0-f644-4244-a5a7-65368fb31798",
+						"type": "scale",
+						"hex": "#A51414",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "2bd0e5ce-6944-4625-93a5-dc8cc2f82c01",
+						"type": "scale",
+						"hex": "#F4CF31",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/3040ba1e-5209-4ca2-9986-114d95746adf"
+				}
+			},
+			{
+				"i": "d2a0924f-3570-49f3-9f6e-aecc0840f0a4",
+				"x": 9,
+				"y": 4,
+				"w": 3,
+				"h": 4,
+				"name": "FIT101",
+				"queries": [
+					{
+						"query": "SELECT mean(\"FIT101\") AS \"mean_FIT101\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_FIT101",
+									"args": [
+										{
+											"value": "FIT101",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_FIT101",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "bf7c8992-c48f-49a8-979e-50f838178083",
+						"type": "scale",
+						"hex": "#FDC44F",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "cbad50fe-3efb-4e8c-bc95-3076b4594eba",
+						"type": "scale",
+						"hex": "#007C76",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "5c12fa09-9e4a-4151-941e-b041a9d0ae6a",
+						"type": "scale",
+						"hex": "#8983FF",
+						"name": "Cthulhu",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/d2a0924f-3570-49f3-9f6e-aecc0840f0a4"
+				}
+			},
+			{
+				"i": "69310f6f-9351-4d52-a022-fffe126badc4",
+				"x": 6,
+				"y": 4,
+				"w": 3,
+				"h": 4,
+				"name": "DPIT301",
+				"queries": [
+					{
+						"query": "SELECT mean(\"DPIT301\") AS \"mean_DPIT301\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_DPIT301",
+									"args": [
+										{
+											"value": "DPIT301",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_DPIT301",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "cb2f325b-bc3f-4350-8550-92f282c4711a",
+						"type": "scale",
+						"hex": "#FD7A5D",
+						"name": "Delorean",
+						"value": "0"
+					},
+					{
+						"id": "841dee20-0fae-4098-9d61-901f1831882c",
+						"type": "scale",
+						"hex": "#5F1CF2",
+						"name": "Delorean",
+						"value": "0"
+					},
+					{
+						"id": "fe9b33bf-b0cd-42e8-8b45-9710dc3ce1dc",
+						"type": "scale",
+						"hex": "#4CE09A",
+						"name": "Delorean",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/69310f6f-9351-4d52-a022-fffe126badc4"
+				}
+			},
+			{
+				"i": "7e242f25-8840-4c7f-8281-4c37be20f01e",
+				"x": 3,
+				"y": 4,
+				"w": 3,
+				"h": 4,
+				"name": "AIT504",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT504\") AS \"mean_AIT504\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT504",
+									"args": [
+										{
+											"value": "AIT504",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_AIT504",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "71a3412c-4a45-46fb-b45f-6673cd8052a4",
+						"type": "scale",
+						"hex": "#8F8AF4",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "921e86e0-f644-4244-a5a7-65368fb31798",
+						"type": "scale",
+						"hex": "#A51414",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					},
+					{
+						"id": "2bd0e5ce-6944-4625-93a5-dc8cc2f82c01",
+						"type": "scale",
+						"hex": "#F4CF31",
+						"name": "Do Androids Dream of Electric Sheep?",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/7e242f25-8840-4c7f-8281-4c37be20f01e"
+				}
+			},
+			{
+				"i": "1bdbc849-3eee-4766-8969-f09c429af0be",
+				"x": 0,
+				"y": 4,
+				"w": 3,
+				"h": 4,
+				"name": "AIT503",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT503\") AS \"mean_AIT503\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT503",
+									"args": [
+										{
+											"value": "AIT503",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_AIT503",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "bf7c8992-c48f-49a8-979e-50f838178083",
+						"type": "scale",
+						"hex": "#FDC44F",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "cbad50fe-3efb-4e8c-bc95-3076b4594eba",
+						"type": "scale",
+						"hex": "#007C76",
+						"name": "Cthulhu",
+						"value": "0"
+					},
+					{
+						"id": "5c12fa09-9e4a-4151-941e-b041a9d0ae6a",
+						"type": "scale",
+						"hex": "#8983FF",
+						"name": "Cthulhu",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/1bdbc849-3eee-4766-8969-f09c429af0be"
+				}
+			},
+			{
+				"i": "ba8f7fe4-0f6c-4f04-9b99-eb7042bee63c",
+				"x": 9,
+				"y": 0,
+				"w": 3,
+				"h": 4,
+				"name": "AIT502",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT502\") AS \"mean_AIT502\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT502",
+									"args": [
+										{
+											"value": "AIT502",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_AIT502",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "3051f25a-f9cb-4362-aa95-cb9c0e7ca44e",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "4fb5cb74-34e9-4e42-b19b-f792a709d45e",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d2b1c420-f8f1-454d-9720-62c85f59a787",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/ba8f7fe4-0f6c-4f04-9b99-eb7042bee63c"
+				}
+			},
+			{
+				"i": "aeba79d5-0db9-47e8-946c-dc0e495c5119",
+				"x": 6,
+				"y": 0,
+				"w": 3,
+				"h": 4,
+				"name": "AIT402",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT402\") AS \"mean_AIT402\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT402",
+									"args": [
+										{
+											"value": "AIT402",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_AIT402",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "60f19fb7-e698-4ded-a773-84073aa08ca2",
+						"type": "scale",
+						"hex": "#F6F6F8",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "99719dc3-5fb7-4a01-9605-5ede419446ab",
+						"type": "scale",
+						"hex": "#A4A8B6",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					},
+					{
+						"id": "0d14e671-f25a-4c54-a4fa-eb5f17e9d499",
+						"type": "scale",
+						"hex": "#545667",
+						"name": "T-Max 400 Film",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/aeba79d5-0db9-47e8-946c-dc0e495c5119"
+				}
+			},
+			{
+				"i": "7853f291-f37e-41b4-af3e-e855b916c81f",
+				"x": 3,
+				"y": 0,
+				"w": 3,
+				"h": 4,
+				"name": "AIT203",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT203\") AS \"mean_AIT203\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT203",
+									"args": [
+										{
+											"value": "AIT203",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "mean_AIT203",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "83095266-e48e-43be-8e11-3741cde3ec44",
+						"type": "scale",
+						"hex": "#DA6FF1",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "7fd61554-a5b5-4d81-b085-938b3d4cfd7d",
+						"type": "scale",
+						"hex": "#00717A",
+						"name": "Ectoplasm",
+						"value": "0"
+					},
+					{
+						"id": "2520cf01-70df-4b54-b827-da3315dde754",
+						"type": "scale",
+						"hex": "#ACFF76",
+						"name": "Ectoplasm",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/7853f291-f37e-41b4-af3e-e855b916c81f"
+				}
+			},
+			{
+				"i": "bcd2eea8-462d-443d-b6ad-af2af9f1bab9",
+				"x": 0,
+				"y": 0,
+				"w": 3,
+				"h": 4,
+				"name": "AIT201",
+				"queries": [
+					{
+						"query": "SELECT mean(\"AIT201\") AS \"mean_AIT201\" FROM \"swat\".\"autogen\".\"file\" WHERE time > :dashboardTime: AND time < :upperDashboardTime: AND \"host\"='192.168.0.106' GROUP BY time(:interval:) FILL(null)",
+						"queryConfig": {
+							"database": "swat",
+							"measurement": "file",
+							"retentionPolicy": "autogen",
+							"fields": [
+								{
+									"value": "mean",
+									"type": "func",
+									"alias": "mean_AIT201",
+									"args": [
+										{
+											"value": "AIT201",
+											"type": "field",
+											"alias": ""
+										}
+									]
+								}
+							],
+							"tags": {
+								"host": [
+									"192.168.0.106"
+								]
+							},
+							"groupBy": {
+								"time": "auto",
+								"tags": []
+							},
+							"areTagsAccepted": true,
+							"fill": "null",
+							"rawText": null,
+							"range": null,
+							"shifts": null
+						},
+						"source": "",
+						"type": "influxql"
+					}
+				],
+				"axes": {
+					"x": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					},
+					"y": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "raw",
+						"scale": "linear"
+					},
+					"y2": {
+						"bounds": [
+							"",
+							""
+						],
+						"label": "",
+						"prefix": "",
+						"suffix": "",
+						"base": "10",
+						"scale": "linear"
+					}
+				},
+				"type": "line",
+				"colors": [
+					{
+						"id": "3051f25a-f9cb-4362-aa95-cb9c0e7ca44e",
+						"type": "scale",
+						"hex": "#31C0F6",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "4fb5cb74-34e9-4e42-b19b-f792a709d45e",
+						"type": "scale",
+						"hex": "#A500A5",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					},
+					{
+						"id": "d2b1c420-f8f1-454d-9720-62c85f59a787",
+						"type": "scale",
+						"hex": "#FF7E27",
+						"name": "Nineteen Eighty Four",
+						"value": "0"
+					}
+				],
+				"legend": {},
+				"tableOptions": {
+					"verticalTimeAxis": true,
+					"sortBy": {
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					},
+					"wrapping": "truncate",
+					"fixFirstColumn": true
+				},
+				"fieldOptions": [
+					{
+						"internalName": "time",
+						"displayName": "",
+						"visible": true
+					}
+				],
+				"timeFormat": "MM/DD/YYYY HH:mm:ss",
+				"decimalPlaces": {
+					"isEnforced": true,
+					"digits": 2
+				},
+				"note": "",
+				"noteVisibility": "default",
+				"links": {
+					"self": "/chronograf/v1/dashboards/3/cells/bcd2eea8-462d-443d-b6ad-af2af9f1bab9"
+				}
+			}
+		],
+		"templates": [],
+		"name": "Features in SWAT",
+		"organization": "default",
+		"links": {
+			"self": "/chronograf/v1/dashboards/3",
+			"cells": "/chronograf/v1/dashboards/3/cells",
+			"templates": "/chronograf/v1/dashboards/3/templates"
+		}
+	}
+}
