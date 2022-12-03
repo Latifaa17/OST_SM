@@ -46,7 +46,7 @@ if __name__=="__main__":
 
     #Saving the data to use for streaming (keeping all features)
     df.to_csv('../Kafka/data/Swat_dataset.csv') 
-
+    df.to_csv('../telegraf/Swat_dataset.csv') 
     #Remove Constant Features
     df = drop_constant_columns(df)
 
@@ -58,5 +58,5 @@ if __name__=="__main__":
 
     #Saving preprocessed data
     df.to_csv('./data/Swat_preprocessed.csv') 
-
+    
     print('\n Successfully preprocessed the data')
