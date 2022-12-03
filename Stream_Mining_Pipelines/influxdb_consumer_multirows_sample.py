@@ -11,7 +11,6 @@ import json
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
-from skmultiflow.drift_detection.adwin import ADWIN
 import numpy as np
 import pandas as pd
 

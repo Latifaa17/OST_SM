@@ -1,7 +1,0 @@
-#Pipelines description
-
-***CUSUM is a point change detector. It loops over all columns of the dataset and detects change 
-when the cumulative sum is beyond a predefined threshold. In real time streaming, the detector waits for a batch of data points, 
-then detects changes if any for a given batch.
-
-***PageHinkley is also a drift detection method and works with only one column. At each timestamp the detector is updated with the new point and checks whether the new point is a change point.
