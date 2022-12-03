@@ -22,7 +22,7 @@
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1669941650237,
+  "iteration": 1670084566757,
   "links": [],
   "liveNow": true,
   "panels": [
@@ -1047,7 +1047,7 @@
           "measurement": "CUSUM",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"prediction\") FROM \"CUSUM\" WHERE (\"prediction\" = 0 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
+          "query": "SELECT count(\"prediction\") FROM \"CUSUM\" WHERE (\"prediction\" = 1 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1240,7 +1240,7 @@
           "measurement": "CUSUM",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT count(\"prediction\") FROM \"CUSUM\" WHERE (\"prediction\" = 1 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
+          "query": "SELECT count(\"prediction\") FROM \"CUSUM\" WHERE (\"prediction\" = 0 AND \"label\" = 1) AND $timeFilter GROUP BY time($__interval)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1514,6 +1514,6 @@
   "timezone": "",
   "title": "SWAT data CUSUM change detection",
   "uid": "Z7LjwMp7k",
-  "version": 112,
+  "version": 115,
   "weekStart": ""
 }
