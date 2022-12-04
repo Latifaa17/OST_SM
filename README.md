@@ -1,16 +1,15 @@
 ## Real-time change detection for monitoring Secure Water Treatment (SWaT)
 
-### Weekly tasks:
-- 21-28 Nov:
-  
-  Selma Mhenni: Fix the issues with storing the data in influxDB
-                - Configure the connection between InfluxDB and Grafana
-                - Build dashboards on Grafana
- 
-   Adhibi Latifa: Fixing the problem of connecting the TIG stack, Trying ADWIN from the river library
+### Run the Project:
 
-   Zeineb Omri: -add a pipeline for the Cumsum model to consume data from kafka + detect changes in real time
-                -store predictions in influxdb
+  1. Run main.sh , this will start the containers and the kafka producer
+  2. From the Stream_Mining_Pipeline folder, run the desired pipeline
+     Example: python ADWIN.py
+  3. Login to Grafana or to chronograf to visualize the results
+     Grafana & chronograf credentials: - username: admin
+                                       - password: admin
+     Connection URL to influxdb: http://influxdb:8086
+     DB name: swat
 
-   Wang Yizhi: - added the chronograf as the UI of influxdb
-               - trying to monitoring the accuracy use the SVM as the decision model for detecting changes
+    
+
