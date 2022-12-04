@@ -26,11 +26,11 @@ def main():
         consumer = KafkaConsumer(topic, bootstrap_servers=['localhost:9092'],auto_offset_reset='earliest', api_version=(0,10),enable_auto_commit=True,value_deserializer=lambda x: loads(x.decode('utf-8')))
         print("Connection established")
         i=0
-        drift_detector_FIT101 = drift.PageHinkley()
-        drift_detector_AIT203 = drift.PageHinkley()
-        drift_detector_PIT502 = drift.PageHinkley()
-        drift_detector_AIT201 = drift.PageHinkley()
-        drift_detector_AIT501 = drift.PageHinkley()
+        drift_detected_FIT101 = drift.PageHinkley()
+        drift_detected_AIT203 = drift.PageHinkley()
+        drift_detected_PIT502 = drift.PageHinkley()
+        drift_detected_AIT201 = drift.PageHinkley()
+        drift_detected_AIT501 = drift.PageHinkley()
 
         for message in consumer:
 
@@ -38,43 +38,43 @@ def main():
             change = False
             point = Point("SWAT_PageHinkley")
             #detect change on FIT101
-            drift_detector_FIT101.update(float(dict["FIT101"]))
+            drift_detected_FIT101.update(float(dict["FIT101"]))
            #detect change on AIT203
-            drift_detector_AIT203.update(float(dict["AIT203"]))
+            drift_detected_AIT203.update(float(dict["AIT203"]))
            #detect change on PIT502
-            drift_detector_PIT502.update(float(dict["PIT502"]))
+            drift_detected_PIT502.update(float(dict["PIT502"]))
            #detect change on AIT201
-            drift_detector_AIT201.update(float(dict["AIT201"]))
+            drift_detected_AIT201.update(float(dict["AIT201"]))
            #detect change on AIT501
-            drift_detector_AIT501.update(float(dict["AIT501"]))
+            drift_detected_AIT501.update(float(dict["AIT501"]))
 
-            if drift_detector_FIT101.change_detected:
+            if drift_detected_FIT101.drift_detected:
                 print(f'Change detected at index {i}, col: FIT101')
-                drift_detector_FIT101.reset()  
+                #drift_detected_FIT101.reset()  
                 change= True
 
 
-            if drift_detector_AIT203.change_detected:
+            if drift_detected_AIT203.drift_detected:
                 print(f'Change detected at index {i}, col: AIT203')
-                drift_detector_AIT203.reset()  
+               # drift_detected_AIT203.reset()  
                 change= True
 
 
-            if drift_detector_PIT502.change_detected:
+            if drift_detected_PIT502.drift_detected:
                 print(f'Change detected at index {i}, col: PIT502')
-                drift_detector_PIT502.reset()  
+              #  drift_detected_PIT502.reset()  
                 change= True
 
-            if drift_detector_AIT201.change_detected:
+            if drift_detected_AIT201.drift_detected:
                 print(f'Change detected at index {i}, col: AIT201')
-                drift_detector_AIT201.reset()  
+              #  drift_detected_AIT201.reset()  
                 change= True
 
 
 
-            if drift_detector_AIT501.change_detected:
+            if drift_detected_AIT501.drift_detected:
                 print(f'Change detected at index {i}, col: AIT501')
-                drift_detector_AIT501.reset()  
+              #  drift_detected_AIT501.reset()  
                 change= True
                 
 

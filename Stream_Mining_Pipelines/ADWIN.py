@@ -45,11 +45,11 @@ def main():
             point_1.tag("FIT101", float(dict["FIT101"]))
 
             drift_detector_1.update(float(dict["FIT101"]))
-            if drift_detector_1.change_detected:
+            if drift_detector_1.drift_detected:
                 # The drift detector indicates after each sample if there is a drift in the data
                 change = True
                 print(f'Change detected at index {i}, col: FIT101')
-                drift_detector_1.reset()   # As a best practice, we reset the detector
+                #drift_detector_1.reset()   # As a best practice, we reset the detector
                 point_1.field("prediction", 1)
                 point_1.tag("prediction", 1)
             else:
@@ -67,9 +67,9 @@ def main():
             point_2.tag("AIT203", float(dict["AIT203"]))
 
             drift_detector_2.update(float(dict["AIT203"]))
-            if drift_detector_2.change_detected:
+            if drift_detector_2.drift_detected:
                 print(f'Change detected at index {i}, col: AIT203')
-                drift_detector_2.reset()   
+              #  drift_detector_2.reset()   
                 point_2.field("prediction", 1)
                 point_2.tag("prediction", 1)
             else:
@@ -87,10 +87,10 @@ def main():
             point_3.tag("DPIT301", float(dict["DPIT301"]))
 
             drift_detector_3.update(float(dict["DPIT301"]))
-            if drift_detector_3.change_detected:
+            if drift_detector_3.drift_detected:
                 change = True
                 print(f'Change detected at index {i}, col: DPIT301')
-                drift_detector_3.reset()   
+               # drift_detector_3.reset()   
                 point_3.field("prediction", 1)
                 point_3.tag("prediction", 1)
             else:
