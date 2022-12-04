@@ -18,6 +18,8 @@ warnings.filterwarnings("ignore")
 def grid_search_LR(C_list,weight_list,X,y):
     '''
     For grid searching the best parameter based on f1 of the class 1
+    C_list: the parameter C candidates in LogisticRegression
+    weight_list: because the dataset's class normal is far overweighed, give more weight on the class attacked to avoid biasing from model, and give more "chance" to minority class attacked 
     '''
     X_train,X_test,y_train,y_test = train_test_split(X,y,stratify=y)
     best_C = C_list[0]

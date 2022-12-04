@@ -8,11 +8,41 @@ import pickle
 from river import drift as drift_detection
 import pandas as pd
 import numpy as np
-from sklearn.decomposition import PCA
-from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
+def choose_para_KS(data_part,window_sizes=None,alphas=None):
+    '''
+    The function for choosing the parameter based on different features in the dataset offline, based on the visualization, so it would be better to run this code on jupyter notebook, by all the detected figures, you may choose the best parameter from it manually.
+    data_part: You can choose the part of the data which has a ideal change, then the function will show how it change and how the KSWIN with following parameters detect works by visualization
+    window_sizes: List of candidate window size
+    alphas: List of candidate alpha
+    '''
+    if window_sizes == None:
+        window_sizes = [10,30,50,100]
+    if alphas == None:
+        alphas = [0.005,0.001,0.0005,0.0001,0.00005,0.00001,0.000005,0.000001,0.0000005,0.0000001,0.00000005,0.00000001]
+    for window_size in window_sizes:
+        for stat_size in np.linspace(window_size/10,window_size/2,3):
+            for alpha in alphas:
+                print("window size:",window_size,"stat_size:",stat_size,"alpha:",alpha)
+                model = drift_detection.KSWIN(alpha,window_size=100,stat_size=int(stat_size))
+                is_change = []
+                for index,input_value in enumerate(data_part):
+                    model.add_element(input_value)
+                    if model.change_detected:
+                        is_change.append(1)
+                    else:
+                        is_change.append(0)
+
+                plt.figure(figsize=(20,5))
+                plt.subplot(2,1,1)
+                plt.plot(data_part)
+                plt.subplot(2,1,2)
+                plt.plot(np.array(is_change),c='red')
+                plt.show()
+                
 def main():
     topic="SWAT"
     print("Connecting to consumer ...")
@@ -61,9 +91,7 @@ def main():
             PIT502_change = change_detect(kswin_PIT502,float(df_detect['PIT502']))
             AIT201_change = change_detect(kswin_AIT201,float(df_detect['AIT201']))
             AIT501_change = change_detect(kswin_AIT501,float(df_detect['AIT501']))
-            # is_change_MV304 = change_detect(kswin_MV304,float(df_golden['MV304']))
-            # is_change_PIT502 = change_detect(kswin_PIT502,float(df_golden['PIT502']))
-            
+          
             
             for feature_name,change in zip(detect_features,[AIT203_change,PIT502_change,AIT201_change,AIT501_change]):
                 point.field(feature_name+'_change', change) 
@@ -75,7 +103,6 @@ def main():
 
             point.time(datetime.utcnow(), WritePrecision.NS)
             write_api.write(bucket, org, point)
-
 
             # dict = message.value
             # point_original = Point("SWAT")            
