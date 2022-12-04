@@ -9,8 +9,8 @@
      Grafana & chronograf credentials: 
      - username: admin
      - password: admin
-    Connection URL to influxdb: http://influxdb:8086
-    DB name: swat
+     - Connection URL to influxdb: http://influxdb:8086
+     - DB name: swat
 
     
 
