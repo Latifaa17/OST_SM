@@ -11,11 +11,10 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from datetime import datetime
 import pandas as pd
 import numpy as np
+from CountMinSketch import CountMinSketch
 
 
-def count_sketch(df):
-    count=df['prediction'].sum()
-    return count
+
 
 #detect_cusum detects changes in a single column x
 def detect_cusum(x, threshold=1, drift=0, show=True, ax=None):
@@ -26,7 +25,7 @@ def detect_cusum(x, threshold=1, drift=0, show=True, ax=None):
     # Find changes (online form)
     for i in range(1, x.size):
         s = x[i] - x[i-1]
-        gp[i] = gp[i-1] + s - drift  # cumulative sum for + change
+        gp[i] = gp[i-1] + s - drift  # cumulative sum for + change  (so we are computing the cumulative sum of changes(see formula of 's'))
         gn[i] = gn[i-1] - s - drift  # cumulative sum for - change
         if gp[i] < 0:
             gp[i], tap = 0, i
@@ -54,13 +53,11 @@ def _is_change(df1):
     #loop over all the columns
     for i in df.columns:
         x = df[i].to_numpy()
-        ta=detect_cusum(x,2.5, 0.1, True) 
+        ta=detect_cusum(x,1.5, 0.75, True) 
         for j in ta:
            df['prediction'][j]=1
-    #x=df['FIT101'].to_numpy()         #****************************
-    #ta=detect_cusum(x,2, 0.07, True)  #********added to detect change from FIT101 only
-    #for j in ta:                      #****************
-        #df['prediction'][j]=1         #****************
+
+
     #merge the labels back after prediction
     df['label']=df1['label'] 
     df[keep]=df1[keep]#get back unnormalized values 
@@ -96,25 +93,40 @@ def main():
        'AIT503', 'AIT504', 'FIT501', 'FIT502', 'FIT503', 'FIT504', 'P501',
        'P502', 'PIT501', 'PIT502', 'PIT503', 'FIT601', 'P601', 'P602', 'P603',
        'label'])
+
+        counter_normal = CountMinSketch(10, 30)
+        counter_attacked= CountMinSketch(10, 30)
+        normal = 0
+        attack = 0
         for message in consumer:
             #print(f"{message.value}")
             cnt= cnt+1
             dict = message.value
             temp=pd.DataFrame(dict,index=[0])
+               
             
-            #print(temp)
-            point = Point("SWAT")           
-            for key, val in dict.items():
-                    if key != 'Timestamp':
-                        point.field(key, float(val))
-                    if key== 'label':
-                        point.tag(key, float(val))
-                        
+            #count min sketch ********************************
+            Count_Min = Point("Count_MIN_SKETCH")            
+            if dict['label'] == '1':    
+                counter_attacked.update('1')
+                attack += 1
 
-            #save data point
-            point.time(datetime.utcnow(), WritePrecision.NS)
-            write_api.write(bucket, org, point)
+            else:
+                counter_normal.update('0')
+                normal += 1
+
+            Count_Min.field('Counter_Normal', counter_normal.query('0'))  
+            Count_Min.field('Counter_Attack', counter_attacked.query('1'))
+            Count_Min.field('Real_Attack', attack) 
+            Count_Min.field('Real_Normal', normal) 
+
+            #save COUNT_MIN results to data point
+            Count_Min.field('label', float(dict['label']))
+            Count_Min.time(datetime.utcnow(), WritePrecision.NS)
+            write_api.write(bucket, org, Count_Min)
+
             print("Data point sent to influxDB")
+            #**************************************************************
             #convert dict to dataframe
             df = df.append(temp, ignore_index=True)
             if(cnt==win_size):
@@ -123,21 +135,14 @@ def main():
                 cnt=0
                 preds=_is_change(df)
                 print("preds: " ,preds)
-                nb_attacks=count_sketch(preds)
-                point = Point("Count_sketch")
-                point.field("count_sketch", nb_attacks)
-                point.time(datetime.utcnow(), WritePrecision.NS)
-                write_api.write(bucket, org, point)
-                print("Counting sketch responded to query")
+
 
                 for pred in range(len(preds)):
                     #print(preds)
                     point = Point("CUSUM") 
                     for col in preds.columns:
 
-                        if col != 'Timestamp':
-                            #print(col,": ",preds.iloc[pred][col])
-                            
+                        if col != 'Timestamp':                            
                             point.field(col, float(preds.iloc[pred][col]))
                         if col== 'label' or col== 'prediction':
                             point.tag(col, float(preds.iloc[pred][col]))
