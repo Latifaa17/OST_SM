@@ -1,1719 +1,2094 @@
 {
-    "annotations": {
-      "list": [
-        {
-          "builtIn": 1,
-          "datasource": "-- Grafana --",
-          "enable": true,
-          "hide": true,
-          "iconColor": "rgba(0, 211, 255, 1)",
-          "name": "Annotations & Alerts",
-          "target": {
-            "limit": 100,
-            "matchAny": false,
-            "tags": [],
-            "type": "dashboard"
-          },
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
           "type": "dashboard"
-        }
-      ]
-    },
-    "editable": true,
-    "fiscalYearStartMonth": 0,
-    "graphTooltip": 0,
-    "id": 3,
-    "links": [],
-    "liveNow": false,
-    "panels": [
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 0
         },
-        "id": 9,
-        "panels": [
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 1
-            },
-            "id": 2,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "prediction",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_FIT101",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "prediction"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              },
-              {
-                "alias": "label",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "measurement": "ADWIN_FIT101",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "label"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "FIT101 Predictions",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 1
-            },
-            "id": 4,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_FIT101\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "True Alarms",
-            "type": "stat"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "Prediction"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "FIT101"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 7
-            },
-            "id": 7,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "FIT101",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_FIT101",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "FIT101"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              },
-              {
-                "alias": "label",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "measurement": "ADWIN_FIT101",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "label"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "FIT101 Stream",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 7
-            },
-            "id": 6,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_FIT101\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "False Alarms",
-            "type": "stat"
-          }
-        ],
-        "title": "FIT101",
-        "type": "row"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 1
-        },
-        "id": 11,
-        "panels": [
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 2
-            },
-            "id": 13,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "prediction",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_DPIT301",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "prediction"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              },
-              {
-                "alias": "label",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "measurement": "ADWIN_DPIT301",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "label"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "DPIT301 Predictions",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 2
-            },
-            "id": 17,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_DPIT301\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "True Alarms",
-            "type": "stat"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "Prediction"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "FIT101"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "DPIT301"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 8
-            },
-            "id": 15,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "DPIT301",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_DPIT301",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "DPIT301"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              },
-              {
-                "alias": "label",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "measurement": "ADWIN_DPIT301",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "label"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "DPIT301 Stream",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 8
-            },
-            "id": 19,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_DPIT301\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "False Alarms",
-            "type": "stat"
-          }
-        ],
-        "title": "DPIT301",
-        "type": "row"
-      },
-      {
-        "collapsed": true,
-        "gridPos": {
-          "h": 1,
-          "w": 24,
-          "x": 0,
-          "y": 2
-        },
-        "id": 21,
-        "panels": [
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 3
-            },
-            "id": 23,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "prediction",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_AIT203",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "prediction"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              },
-              {
-                "alias": "label",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "hide": false,
-                "measurement": "ADWIN_AIT203",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "B",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "label"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "AIT203 Predictions",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 3
-            },
-            "id": 27,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_AIT203\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "True Alarms",
-            "type": "stat"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "palette-classic"
-                },
-                "custom": {
-                  "axisLabel": "",
-                  "axisPlacement": "auto",
-                  "barAlignment": 0,
-                  "drawStyle": "line",
-                  "fillOpacity": 0,
-                  "gradientMode": "none",
-                  "hideFrom": {
-                    "legend": false,
-                    "tooltip": false,
-                    "viz": false
-                  },
-                  "lineInterpolation": "linear",
-                  "lineWidth": 1,
-                  "pointSize": 5,
-                  "scaleDistribution": {
-                    "type": "linear"
-                  },
-                  "showPoints": "auto",
-                  "spanNulls": false,
-                  "stacking": {
-                    "group": "A",
-                    "mode": "none"
-                  },
-                  "thresholdsStyle": {
-                    "mode": "off"
-                  }
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green"
-                    },
-                    {
-                      "color": "red",
-                      "value": 80
-                    }
-                  ]
-                }
-              },
-              "overrides": [
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "label"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "purple",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "Prediction"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "FIT101"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "matcher": {
-                    "id": "byName",
-                    "options": "AIT203"
-                  },
-                  "properties": [
-                    {
-                      "id": "color",
-                      "value": {
-                        "fixedColor": "yellow",
-                        "mode": "fixed"
-                      }
-                    }
-                  ]
-                }
-              ]
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 18,
-              "x": 0,
-              "y": 9
-            },
-            "id": 25,
-            "options": {
-              "legend": {
-                "calcs": [],
-                "displayMode": "list",
-                "placement": "bottom"
-              },
-              "tooltip": {
-                "mode": "single",
-                "sort": "none"
-              }
-            },
-            "targets": [
-              {
-                "alias": "AIT203",
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "ADWIN_AIT203",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "AIT203"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "AIT203 Stream",
-            "type": "timeseries"
-          },
-          {
-            "fieldConfig": {
-              "defaults": {
-                "color": {
-                  "mode": "thresholds"
-                },
-                "mappings": [],
-                "thresholds": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red"
-                    }
-                  ]
-                }
-              },
-              "overrides": []
-            },
-            "gridPos": {
-              "h": 6,
-              "w": 6,
-              "x": 18,
-              "y": 9
-            },
-            "id": 29,
-            "options": {
-              "colorMode": "value",
-              "graphMode": "area",
-              "justifyMode": "auto",
-              "orientation": "auto",
-              "reduceOptions": {
-                "calcs": [
-                  "lastNotNull"
-                ],
-                "fields": "",
-                "values": false
-              },
-              "textMode": "auto"
-            },
-            "pluginVersion": "8.4.3",
-            "targets": [
-              {
-                "datasource": {
-                  "type": "influxdb",
-                  "uid": "iIPWdjdVz"
-                },
-                "groupBy": [
-                  {
-                    "params": [
-                      "$__interval"
-                    ],
-                    "type": "time"
-                  },
-                  {
-                    "params": [
-                      "null"
-                    ],
-                    "type": "fill"
-                  }
-                ],
-                "measurement": "Kmeans",
-                "orderByTime": "ASC",
-                "policy": "default",
-                "query": "SELECT count(\"prediction\") FROM \"ADWIN_AIT203\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
-                "rawQuery": true,
-                "refId": "A",
-                "resultFormat": "time_series",
-                "select": [
-                  [
-                    {
-                      "params": [
-                        "value"
-                      ],
-                      "type": "field"
-                    },
-                    {
-                      "params": [],
-                      "type": "mean"
-                    }
-                  ]
-                ],
-                "tags": []
-              }
-            ],
-            "title": "False Alarms",
-            "type": "stat"
-          }
-        ],
-        "title": "AIT203",
-        "type": "row"
+        "type": "dashboard"
       }
-    ],
-    "schemaVersion": 35,
-    "style": "dark",
-    "tags": [],
-    "templating": {
-      "list": []
+    ]
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 3,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 9,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 1
+          },
+          "id": 2,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "prediction",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_FIT101",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "prediction"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_FIT101",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "FIT101 Predictions",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 1
+          },
+          "id": 4,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_FIT101\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "True Alarms",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Prediction"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "FIT101"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 7
+          },
+          "id": 7,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "FIT101",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_FIT101",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "FIT101"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_FIT101",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "FIT101 Stream",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 7
+          },
+          "id": 6,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_FIT101\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "False Alarms",
+          "type": "stat"
+        }
+      ],
+      "title": "FIT101",
+      "type": "row"
     },
-    "time": {
-      "from": "now-6h",
-      "to": "now"
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 1
+      },
+      "id": 11,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 2
+          },
+          "id": 13,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "prediction",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_DPIT301",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "prediction"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_DPIT301",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "DPIT301 Predictions",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 2
+          },
+          "id": 17,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_DPIT301\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "True Alarms",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Prediction"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "FIT101"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "DPIT301"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 8
+          },
+          "id": 15,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "DPIT301",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_DPIT301",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "DPIT301"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_DPIT301",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "DPIT301 Stream",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 8
+          },
+          "id": 19,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_DPIT301\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "False Alarms",
+          "type": "stat"
+        }
+      ],
+      "title": "DPIT301",
+      "type": "row"
     },
-    "timepicker": {},
-    "timezone": "",
-    "title": "ADWIN",
-    "uid": "j472YOF4k",
-    "version": 2,
-    "weekStart": ""
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 21,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 3
+          },
+          "id": 23,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "prediction",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_AIT203",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "prediction"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_AIT203",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "AIT203 Predictions",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 3
+          },
+          "id": 27,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_AIT203\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "True Alarms",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "Prediction"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "FIT101"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              },
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "AIT203"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "yellow",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 18,
+            "x": 0,
+            "y": 9
+          },
+          "id": 25,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "AIT203",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_AIT203",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "AIT203"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "AIT203 Stream",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 6,
+            "x": 18,
+            "y": 9
+          },
+          "id": 29,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_AIT203\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "False Alarms",
+          "type": "stat"
+        }
+      ],
+      "title": "AIT203",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 3
+      },
+      "id": 31,
+      "panels": [
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 0,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "legend": false,
+                  "tooltip": false,
+                  "viz": false
+                },
+                "lineInterpolation": "linear",
+                "lineWidth": 1,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "auto",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  },
+                  {
+                    "color": "red",
+                    "value": 80
+                  }
+                ]
+              }
+            },
+            "overrides": [
+              {
+                "matcher": {
+                  "id": "byName",
+                  "options": "label"
+                },
+                "properties": [
+                  {
+                    "id": "color",
+                    "value": {
+                      "fixedColor": "purple",
+                      "mode": "fixed"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 16,
+            "x": 0,
+            "y": 4
+          },
+          "id": 33,
+          "options": {
+            "legend": {
+              "calcs": [],
+              "displayMode": "list",
+              "placement": "bottom"
+            },
+            "tooltip": {
+              "mode": "single",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "alias": "prediction",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "ADWIN_combined",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "prediction"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "label",
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "measurement": "ADWIN_combined",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "label"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "FIT101 & DPIT301 Predictions",
+          "type": "timeseries"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 16,
+            "y": 4
+          },
+          "id": 35,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_combined\" WHERE ( \"label\" = 1 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "True Alarms",
+          "type": "stat"
+        },
+        {
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "thresholds"
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "red",
+                    "value": null
+                  }
+                ]
+              }
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 6,
+            "w": 4,
+            "x": 20,
+            "y": 4
+          },
+          "id": 37,
+          "options": {
+            "colorMode": "value",
+            "graphMode": "area",
+            "justifyMode": "auto",
+            "orientation": "auto",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "textMode": "auto"
+          },
+          "pluginVersion": "8.4.3",
+          "targets": [
+            {
+              "datasource": {
+                "type": "influxdb",
+                "uid": "iIPWdjdVz"
+              },
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "measurement": "Kmeans",
+              "orderByTime": "ASC",
+              "policy": "default",
+              "query": "SELECT count(\"prediction\") FROM \"ADWIN_combined\" WHERE ( \"label\" = 0 AND \"prediction\" = 1)  AND $timeFilter ",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "title": "False Alarms",
+          "type": "stat"
+        }
+      ],
+      "title": "FIT101 & DPIT301 Combined",
+      "type": "row"
+    }
+  ],
+  "schemaVersion": 35,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": []
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "",
+  "title": "ADWIN",
+  "uid": "j472YOF4k",
+  "version": 3,
+  "weekStart": ""
 }

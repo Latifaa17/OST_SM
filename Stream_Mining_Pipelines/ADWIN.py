@@ -35,7 +35,8 @@ def main():
             #print(f"{message.value}")
 
             dict = message.value
-
+            change = False
+            
             '''  FIT101  '''
             point_1 = Point("ADWIN_FIT101")
             point_1.field("label", float(dict["label"]))
@@ -46,6 +47,7 @@ def main():
             drift_detector_1.update(float(dict["FIT101"]))
             if drift_detector_1.change_detected:
                 # The drift detector indicates after each sample if there is a drift in the data
+                change = True
                 print(f'Change detected at index {i}, col: FIT101')
                 drift_detector_1.reset()   # As a best practice, we reset the detector
                 point_1.field("prediction", 1)
@@ -86,6 +88,7 @@ def main():
 
             drift_detector_3.update(float(dict["DPIT301"]))
             if drift_detector_3.change_detected:
+                change = True
                 print(f'Change detected at index {i}, col: DPIT301')
                 drift_detector_3.reset()   
                 point_3.field("prediction", 1)
@@ -97,6 +100,20 @@ def main():
             point_3.time(datetime.utcnow(), WritePrecision.NS)
             write_api.write(bucket, org, point_3)
 
+            '''FIT101 & DPIT301 combined'''
+            point_c = Point("ADWIN_combined")
+            point_c.field("label", float(dict["label"]))
+            point_c.tag("label", float(dict["label"]))
+            if change:
+                point_c.field("prediction", 1)
+                point_c.tag("prediction", 1)
+            else:
+                point_c.field("prediction", 0)
+                point_c.tag("prediction", 0)
+            
+            point_c.time(datetime.utcnow(), WritePrecision.NS)
+            write_api.write(bucket, org, point_c)
+
             '''For EDA'''
             dict = message.value
             point_4 = Point("SWAT_EDA_ADWIN")            
@@ -107,8 +124,7 @@ def main():
                     if key == 'label':
                         point_4.tag(key, float(val))
 
-            point_4.time(datetime.utcnow(), WritePrecision.NS)
-            
+            point_4.time(datetime.utcnow(), WritePrecision.NS)  
             write_api.write(bucket, org, point_4)
 
             i+=1
