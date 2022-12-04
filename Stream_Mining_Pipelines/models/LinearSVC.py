@@ -8,7 +8,7 @@ from sklearn.preprocessing import StandardScaler
 df = pd.read_csv('../../Kafka/data/Swat_dataset.csv')
 df = df.drop(columns = ['Timestamp', 'Unnamed: 0'])
 df.fillna(0, inplace = True)
-#df  = df.iloc[:15000]
+#df  = df.tail(200000)
 dataset = df.values
 
 X = dataset[:,:-1]

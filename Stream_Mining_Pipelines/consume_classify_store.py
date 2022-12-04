@@ -40,9 +40,9 @@ def main():
             to_predict = pred_row.values[:,1:-1]
             #print(to_predict)
             model = pickle.load(open(f'models/LinearSVC.pkl', 'rb'))
-            preds = model.predict(to_predict)
+            pred = model.predict(to_predict)
           
-            pred_row["prediction"] = preds
+            pred_row["prediction"] = pred
             point = Point("SWAT_classified")
             for key, val in pred_row.items():
                 if key != 'Timestamp':
