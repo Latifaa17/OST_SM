@@ -7,10 +7,10 @@
      Example: python ADWIN.py
   3. Login to Grafana or to chronograf to visualize the results\
      Grafana & chronograf credentials: 
-     - username: admin\
-     - password: admin\
-     Connection URL to influxdb: http://influxdb:8086\
-     DB name: swat
+     - username: admin
+     - password: admin
+    Connection URL to influxdb: http://influxdb:8086
+    DB name: swat
 
     
 
