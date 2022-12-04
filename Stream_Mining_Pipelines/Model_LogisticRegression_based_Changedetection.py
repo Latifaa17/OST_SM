@@ -56,7 +56,7 @@ with InfluxDBClient(url="http://localhost:8086", token=f'{username}:{password}',
         y_pred = model.predict(X)
         
         acc, f1, recall = calc_score(y,y_pred,0)
-        print(acc,f1,recall)
+        # print(acc,f1,recall)
         
         for index,data in df.iterrows(): # Send rows into influexdb by point
             point = Point("SWAT_MUL_sample")
@@ -67,7 +67,7 @@ with InfluxDBClient(url="http://localhost:8086", token=f'{username}:{password}',
                 if key == 'label':
                     point.tag("label", data)
                 if acc < 0.6 or f1 < 0.6 or recall < 0.6:
-                    print('change')
+                    # print('change')
                     point.field('change', 1)
                     point.tag('change', 1)
                 else:
@@ -76,4 +76,4 @@ with InfluxDBClient(url="http://localhost:8086", token=f'{username}:{password}',
                     
             write_api.write(bucket, org, point)
             i+=1
-#             print("Message sent to influxDB", i)
+            print("Message sent to influxDB", i)
