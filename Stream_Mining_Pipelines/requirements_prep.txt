@@ -2,6 +2,6 @@ numpy
 pandas
 scikit-learn
 scipy==1.9.1
-river==0.12.0
+river==0.14.0
 influxdb-client
 kafka-python

@@ -10,5 +10,8 @@ python producer_mul.py
 python producer.py
 
 # cd ../Stream_Mining_Pipelines
-# python influxdbv1_consumer_sample.py
+
+# python Model_LogisticRegression_based_Changedetection.py
+# python KSWIN.py
+# python Kmeans.py
 # wait
