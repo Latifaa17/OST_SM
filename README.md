@@ -12,5 +12,9 @@
      - Connection URL to influxdb: http://influxdb:8086
      - DB name: swat
 
+
+### Architecture:
+![image](https://github.com/Latifaa17/OST_SM/OST-SM Architecturw_final.png)
+
     
 
