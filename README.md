@@ -14,7 +14,7 @@
 
 
 ### Architecture:
-![image](https://github.com/Latifaa17/OST_SM/OST-SM Architecturw_final.png)
+![image](https://github.com/Latifaa17/OST_SM/OST-SM/Architecturw_final.png)
 
     
 
